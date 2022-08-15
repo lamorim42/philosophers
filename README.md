@@ -2,10 +2,14 @@
 
 ## Índice
 
+[Utilizando Singleton](#utilizando-singleton)
 [Funções permitidas](#funções-permitidas)
 
-## Funções permitidas
+## Utilizando Singleton
 
+
+
+## Funções permitidas
 
 | Função | Descrição | Retorno | Lib |
 | ------ | --------- | ------- | --- |
