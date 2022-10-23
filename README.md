@@ -59,10 +59,10 @@ Como criamos um espaço na memório, onde mapeamos esse espaço com uma struct e
 void	main(void)
 {
 	t_philo	*write_philo;
-	t_philo	*read_philo;
+	t_philo	**read_philo;
 
-	write_philo = philo_instance();
-	read_philo = *(philo_instance());
+	write_philo = *(philo_instance());
+	**read_philo = **(philo_instance());
 }
 
 ```
