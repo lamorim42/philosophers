@@ -2,12 +2,70 @@
 
 ## Índice
 
-[Utilizando Singleton](#utilizando-singleton)
-[Funções permitidas](#funções-permitidas)
+1. [Utilizando Singleton](#utilizando-singleton)
+2. [Read and write](#read-and-write)
+3. [Funções permitidas](#funções-permitidas)
 
 ## Utilizando Singleton
 
+### Definição
 
+- Singleton é um design pattern de *'criação'*, o qual garante que uma `'classe'` tenha apenas **uma** `'instância'`, a qual tem um ponto de acesso global.
+
+*Em outras palavras, podemos dizer que nossa 'estrutura' será criada ao começar o programa. Teremos acesso a essa estrutura de forma global e poderemos acessa-lá (read/write) durante todo o programa*
+
+Para tal comportamento iremos utilizar a 'static'. Mas atenção, como estamos utilizando uma linguagem procedural para replicar um pattern de linguagens orientadas a objeto, não teremos uma implementação completamente fiel, porém funcional.
+
+### Exemplo
+
+```c
+
+/* typedef struct s_input
+{
+	int				n_eat;
+	unsigned int	t_die;
+	unsigned int	t_eat;
+	unsigned int	t_sleep;
+	unsigned int	n_philos;
+	unsigned int	start;
+	char			to_continue;
+}	t_input; */
+
+//input_instance.c
+
+t_input	*input_instance(void)
+{
+	static t_input	__instance;
+
+	return (&__instance);
+}
+```
+*Exemplo retirado do arquivo [input_instance.c](./philo/app/src/input/input_instance.c)*
+
+## Read and Write
+
+Como criamos um espaço na memório, onde mapeamos esse espaço com uma struct e sempre devolvemos esse mesmo espaço na memória, podemos controlar o acesso a nossa instância.
+
+### Exemplo
+
+```c
+// t_philo	**philo_instance(void)
+// {
+// 	static t_philo	*__instance;
+
+// 	return (&__instance);
+// }
+
+void	main(void)
+{
+	t_philo	*write_philo;
+	t_philo	*read_philo;
+
+	write_philo = philo_instance();
+	read_philo = *(philo_instance());
+}
+
+```
 
 ## Funções permitidas
 
