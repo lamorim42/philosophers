@@ -4,6 +4,7 @@ CFLAGS = -Wall -Werror -Wextra -g
 INCLUDE = -I ../app/includes/
 
 SRC += input_instance.c
+SRC += test_utils.c
 SRC += test_input.c
 
 

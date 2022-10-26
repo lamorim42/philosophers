@@ -28,6 +28,8 @@ RM = rm -rf
 VPATH = ./app/src ./app/src/input ./app/src/philo\
 		./app/src/print ./app/src/utils
 
+add = .
+
 $(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
@@ -43,6 +45,7 @@ fclean:
 	$(RM) $(OBJ)
 	$(RM) $(OBJ_DIR)
 	$(RM) $(NAME)
+	make fclean -C ./tests/
 
 re: fclean all
 
@@ -53,8 +56,14 @@ obj_dir:
 		echo "make: Nothing to be done for 'all'.";\
 	fi
 
-git:
-	git add .
-	git commit
+git:	fclean
+		@echo "##### STATUS #####"
+		git status
+		@echo "##### ADD #####"
+		git add $(add)
+		@echo "##### COMMIT #####"
+		git commit
+		@echo "##### STATUS #####"
+		git status
 
 .PHONY= all clean fclean re $(NAME)
