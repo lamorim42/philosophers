@@ -53,4 +53,8 @@ obj_dir:
 		echo "make: Nothing to be done for 'all'.";\
 	fi
 
+git:
+	git add .
+	git commit
+
 .PHONY= all clean fclean re $(NAME)
