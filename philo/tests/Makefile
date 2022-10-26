@@ -42,4 +42,8 @@ obj_dir:
 		echo "make: Nothing to be done for 'all'.";\
 	fi
 
+test: fclean all
+	@printf "\e[1;95m\n############## TEST ##############\n\n\e[0m"
+	./test_suite
+
 .PHONY= all clean fclean re $(NAME)
