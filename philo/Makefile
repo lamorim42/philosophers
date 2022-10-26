@@ -57,13 +57,13 @@ obj_dir:
 	fi
 
 git:	fclean
-		@echo "##### STATUS #####"
+		@printf "\n##### STATUS #####\n\n"
 		git status
-		@echo "##### ADD #####"
+		@printf "\n##### ADD #####\n\n"
 		git add $(add)
-		@echo "##### COMMIT #####"
+		@printf "\n##### COMMIT #####\n\n"
 		git commit
-		@echo "##### STATUS #####"
+		@printf "\n##### STATUS #####\n\n"
 		git status
 
 .PHONY= all clean fclean re $(NAME)
