@@ -83,8 +83,13 @@ static void	supervisor(void)
 
 int	main(int argc, char **argv)
 {
-	if (!input_valid_and_load(argc, argv))
+	if (is_valid_input(argc, argv))
+		load_input(argc, argv);
+	else
+	{
+		print_input_error();
 		return (0);
+	}
 	if (input_instance()->n_philos > 0)
 	{
 		philo_load();

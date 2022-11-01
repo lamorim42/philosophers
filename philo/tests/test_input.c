@@ -8,7 +8,7 @@ Test(test_input, input_instance)
 
 	input = input_instance();
 	mock_input(input);
-	cr_assert(input->n_philos == 5);
+	cr_assert_eq(input->n_philos, 5);
 }
 
 Test(test_input, input_instance_memmory_is_always_the_same)
@@ -18,7 +18,7 @@ Test(test_input, input_instance_memmory_is_always_the_same)
 
 	input = input_instance();
 	input2 = input_instance();
-	cr_assert(input == input2);
+	cr_assert_eq(input, input2);
 }
 
 Test(test_input, input_instance_read_and_write)
@@ -30,6 +30,6 @@ Test(test_input, input_instance_read_and_write)
 	mock_input(input);
 	input2 = *input_instance();
 	input2.n_philos = 8;
-	cr_assert(input->n_philos == 5);
-	cr_assert(input2.n_philos == 8);
+	cr_assert_eq(input->n_philos, 5);
+	cr_assert_eq(input2.n_philos, 8);
 }

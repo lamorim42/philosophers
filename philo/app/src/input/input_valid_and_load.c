@@ -33,19 +33,22 @@ static void	set_input(char *str, int index)
 
 static char	valid_string(char *str)
 {
-	while (*str)
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		if (!ph_isdigit(*str))
+		if (!ph_isdigit(str[i]))
 			return (0);
-		str++;
+		i++;
 	}
 	return (1);
 }
 
-char	input_valid_and_load(int argc, char **argv)
+char	is_valid_input(int argc, char **argv)
 {
-	int		i;
 	t_input	*input;
+	int		i;
 
 	i = 1;
 	input = input_instance();
@@ -53,19 +56,24 @@ char	input_valid_and_load(int argc, char **argv)
 	input->start = 0;
 	input->to_continue = 1;
 	if (argc < 5 || argc > 6)
-	{
-		print_input_error();
 		return (0);
-	}
 	while (i < argc)
 	{
 		if (!valid_string(argv[i]))
-		{
-			print_input_error();
 			return (0);
-		}
-		set_input(argv[i], i);
 		i++;
 	}
 	return (1);
+}
+
+void	load_input(int argc, char **argv)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		set_input(argv[i], i);
+		i++;
+	}
 }

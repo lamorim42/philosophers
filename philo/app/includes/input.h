@@ -25,6 +25,7 @@ typedef struct s_input
 }	t_input;
 
 t_input	*input_instance(void);
-char	input_valid_and_load(int argc, char **argv);
+char	is_valid_input(int argc, char **argv);
+void	load_input(int argc, char **argv);
 
 #endif

@@ -54,11 +54,17 @@ static void	philo_add_back(t_philo *new)
 void	philo_load(void)
 {
 	unsigned int	i;
+	t_input			*input;
+	t_philo			*philo;
 
 	i = 0;
-	while (i < input_instance()->n_philos)
+	input = input_instance();
+	philo = NULL;
+	while (i < input->n_philos)
 	{
-		philo_add_back(philo_creat());
+		philo = philo_creat();
+		philo_add_back(philo);
+		philo = NULL;
 		i++;
 	}
 }

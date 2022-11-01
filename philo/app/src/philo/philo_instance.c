@@ -14,7 +14,7 @@
 
 t_philo	**philo_instance(void)
 {
-	static t_philo	*__instance;
+	static t_philo	*__instance = NULL;
 
 	return (&__instance);
 }

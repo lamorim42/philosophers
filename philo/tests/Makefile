@@ -6,6 +6,19 @@ INCLUDE = -I ../app/includes/
 SRC += input_instance.c
 SRC += test_utils.c
 SRC += test_input.c
+SRC += test_philo.c
+SRC += philo_instance.c
+SRC += philo_load.c
+SRC += philo_life_cycle.c
+SRC += philo_join.c
+SRC += print_input_error.c
+SRC += print_philo_activity.c
+SRC += print_philo_die.c
+SRC += ph_atoi.c
+SRC += ph_consume_time.c
+SRC += ph_get_time.c
+SRC += ph_isdigit.c
+SRC += ph_sleep.c
 
 
 OBJS = $(SRC:.c=.o)
