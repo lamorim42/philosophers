@@ -67,7 +67,56 @@ void	main(void)
 
 ```
 
-## Funções permitidas
+## Definindo 'Entidades'
+
+- Um **philosopher** *(aka philo)* será uma 'entidade' que está em uma Jantar e usa um **fork** para comer. um *philo* executa as ações de comer, pensar e dormir.
+- Um *philo* deve usar dois *forks* para comer
+- o número de *forks* é igual ao de *philos*
+- ao terminar de comer um *philo* libera ambos os *forks* e começa a dormir. Quando acordar volta a pensar novamente.
+- o programa termina quando um *philo* morre.
+- um *philo* **morre** se ele não conseguir comer em um tempo predeterminado.
+- todo *philo* deve comer e não deveria morrer
+	> a depender do tempo para morrer um *philo* pode morrer
+- um *philo* não sabe que outro vai morrer
+- um philo deve evitar morrer
+
+## Requesitos do sistema
+
+1. O programa deve receber os arqumentos:
+	```
+	./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
+	```
+	1. `number_of_philosophers`: Número de *philo* (também é o número de *forks*)
+	2. `time_to_die`: tempo que cada *philo* tem para fazer um *'ciclo de atividade'*.
+	3. `time_to_eat`: tempo que um *philo* para comer (para segurar dois *forks*)
+	4. `time_to_sleep`: tempo que um *philo* tem para dormir (uma phorma de dar tempo de compartilhar os *forks*)
+	5. `number_of_time_each_philosopher_must_eat`: Número de vezes que um *philo* come
+	> Os tempos devem ser em milissegundos
+2. Cada *philo* tem um **id** de 1 a *number_of_philosophers*
+3. O philo de `id` 1 *senta* ao lado do philo `id` *number_of_philosophers*
+	- O philo `N` fica entre os philos `N + 1` e `N - 1`
+4. Devemos logar todas as ações de um philo
+5. Os logs devem ter o padão:
+	```
+	timestamp_in_ms philo_id has taken a fork
+	timestamp_in_ms philo_id is eating
+	timestamp_in_ms philo_id is sleeping
+	timestamp_in_ms philo_id is thinking
+	timestamp_in_ms philo_id died
+	```
+	> tempo em milissegundo!
+6. As mensagens não devem se misturar
+7. A mensagem da morte de um philo não deve ser disparada mais de `10ms` apos a sua morte
+8. O programa não deve ter [data races](https://en.wikipedia.org/wiki/Race_condition#Data_race)
+
+## Detalhes técnicos
+
+- cada philo deve ter um fork
+- cada philo tem um fork a sua direita e um fork a sua esquerda
+- 1 philo = 1 fork
+- os forks devem ser protegidos com *mutex* um mutex para cada
+
+### Funções permitidas
 
 | Função | Descrição | Retorno | Lib |
 | ------ | --------- | ------- | --- |
