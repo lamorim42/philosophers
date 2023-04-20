@@ -82,7 +82,7 @@ void	main(void)
 
 ## Requesitos do sistema
 
-1. O programa deve receber os arqumentos:
+1. O programa deve receber os argumentos:
 	```
 	./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
 	```
@@ -108,6 +108,36 @@ void	main(void)
 6. As mensagens não devem se misturar
 7. A mensagem da morte de um philo não deve ser disparada mais de `10ms` apos a sua morte
 8. O programa não deve ter [data races](https://en.wikipedia.org/wiki/Race_condition#Data_race)
+
+## Desenho do sistema
+
+```mermaid
+flowchart LR
+	a0((Start)) --> a1[recebemos o inpudte]
+	a1 --> a2[Validamos os inputes]
+	a2 --> a3[Iniciamos nossas estruturas de dados]
+	a3 --> a4[Iniciamos interação entre entidades]
+	a4 --> a5((Fim))
+```
+
+## Estrutura de Dados
+
+- Nosso sistema ira utilizar *duble linked-list* para representar os philosophos
+	```c
+	typedef struct philo { // Node
+		unsigned int	id;
+		pthread_t		thread;
+		pthread_mutex_t	fork;
+		struct philo	*prev;
+		struct philo	*next;
+	} philo;
+
+	typedef struct table { // List
+		philo	*first;
+		philo	*last;
+	} table;
+	```
+- Os forks serão representados por `pthread_mutex_t`
 
 ## Detalhes técnicos
 
