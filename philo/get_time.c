@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_loop.c                                       :+:      :+:    :+:   */
+/*   get_time.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 20:24:31 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/29 23:48:14 by lamorim          ###   ########.fr       */
+/*   Created: 2023/04/30 00:01:09 by lamorim           #+#    #+#             */
+/*   Updated: 2023/04/30 00:04:21 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include "input.h"
-#include "utils.h"
-#include <stdio.h>
+#include <sys/time.h>
+#include <stdlib.h>
 
-void	*philo_loop(void *ptr)
+unsigned int	get_time(unsigned int time)
 {
-	t_philo	*philo;
+	struct timeval	date;
+	unsigned int	_time;
 
-	philo = (t_philo *) ptr;
-	return (NULL);
+	gettimeofday(&date, NULL);
+	_time = (((date.tv_sec * 1000) + (date.tv_usec / 1000)) - time);
+	return (_time);
 }
