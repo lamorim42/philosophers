@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_validation.c                                 :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 19:11:09 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/29 19:15:24by lamorim          ###   ########.fr       */
+/*   Created: 2023/04/29 19:57:35 by lamorim           #+#    #+#             */
+/*   Updated: 2023/04/29 20:27:20 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "input.h"
-#include "utils.h"
+#ifndef PHILO_H
+# define PHILO_H
 
-static char	argv_validation(char *argv)
-{
-	while (*argv)
-	{
-		if (is_digit(*argv) == 0)
-			return (0);
-		argv++;
-	}
-	return (1);
-}
+# include <pthread.h>
 
-char	input_validation(int argc, char **argv)
+typedef struct s_philo
 {
-	if (argc < 5 || argc > 6)
-		return (0);
-	argv++;
-	while (*argv)
-	{
-		if (argv_validation(*argv) == 0)
-			return (0);
-		argv++;
-	}
-	return (1);
-}
+	unsigned int	id;
+	pthread_mutex_t	fork;
+	struct s_philo	*next;
+	struct s_philo	*prev;
+	int				n_eat;
+	unsigned int	last_eat;
+	pthread_t		thread;
+	char			is_check;
+}	t_philo;
+
+t_philo	**philo_instance(void);
+void	philo_load(void);
+void	*philo_loop(void *ptr);
+
+#endif

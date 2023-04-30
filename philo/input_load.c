@@ -6,11 +6,12 @@
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:27:46 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/29 19:42:27 by lamorim          ###   ########.fr       */
+/*   Updated: 2023/04/29 19:56:52 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
+#include "utils.h"
 
 static int	ft_is_space(int c);
 static int	ft_signal(int c);

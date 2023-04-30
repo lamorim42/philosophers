@@ -1,39 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_validation.c                                 :+:      :+:    :+:   */
+/*   sleep.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 19:11:09 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/29 19:15:24by lamorim          ###   ########.fr       */
+/*   Created: 2023/04/29 19:53:40 by lamorim           #+#    #+#             */
+/*   Updated: 2023/04/29 20:28:41 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "input.h"
-#include "utils.h"
+#include <unistd.h>
 
-static char	argv_validation(char *argv)
+void	ft_sleep(unsigned int time)
 {
-	while (*argv)
-	{
-		if (is_digit(*argv) == 0)
-			return (0);
-		argv++;
-	}
-	return (1);
-}
-
-char	input_validation(int argc, char **argv)
-{
-	if (argc < 5 || argc > 6)
-		return (0);
-	argv++;
-	while (*argv)
-	{
-		if (argv_validation(*argv) == 0)
-			return (0);
-		argv++;
-	}
-	return (1);
+	usleep(time * 1000);
 }

@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo_instance.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 18:23:53 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/29 20:28:17 by lamorim          ###   ########.fr       */
+/*   Created: 2023/04/29 20:02:46 by lamorim           #+#    #+#             */
+/*   Updated: 2023/04/29 20:03:43 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "input.h"
 #include "philo.h"
 
-#include <stdio.h>
-
-int	main(int argc, char **argv)
+t_philo	**philo_instance(void)
 {
-	if (input_validation(argc, argv) == 0)
-	{
-		printf("invalido!\n");
-		return (1);
-	}
-	printf("Valido!\n");
-	input_load(argc, argv);
-	printf("%d, %d, %d, %d, %d\n", input_instance()->n_philo,
-	input_instance()->t_die, input_instance()->t_eat,
-	input_instance()->t_sleep, input_instance()->n_eat);
-	philo_load();
-	return (0);
+	static t_philo	*philo;
+
+	return (&philo);
 }
