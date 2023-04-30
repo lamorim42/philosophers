@@ -6,15 +6,11 @@
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 23:31:51 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 01:20:31 by lamorim          ###   ########.fr       */
+/*   Updated: 2023/04/30 11:49:19 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include "philo.h"
-#include "input.h"
-#include "utils.h"
+#include "table.h"
 
 void	input_helper(void)
 {
@@ -57,12 +53,10 @@ void	ft_putnbr_fd(unsigned int n, int fd)
 
 void	print_action(t_philo *philo, char *str)
 {
-	pthread_mutex_lock(&input_instance()->print);
-	ft_putnbr_fd(get_time(philo->start), 1);
+	ft_putnbr_fd(get_time(philo->input->start_time), 1);
 	ft_putstr_fd(" ", 1);
 	ft_putnbr_fd((philo->id + 1), 1);
 	ft_putstr_fd(" ", 1);
 	ft_putstr_fd(str, 1);
 	ft_putstr_fd("\n", 1);
-	pthread_mutex_unlock(&input_instance()->print);
 }

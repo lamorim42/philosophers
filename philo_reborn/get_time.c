@@ -6,12 +6,11 @@
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 00:01:09 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 00:04:21 by lamorim          ###   ########.fr       */
+/*   Updated: 2023/04/30 11:30:43 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/time.h>
-#include <stdlib.h>
+#include "table.h"
 
 unsigned int	get_time(unsigned int time)
 {

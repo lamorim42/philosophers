@@ -6,7 +6,7 @@
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 10:42:09 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 10:48:56 by lamorim          ###   ########.fr       */
+/*   Updated: 2023/04/30 11:44:11 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ typedef struct s_input
 	int				max_eat;
 	int				count_max_eat;
 	char			to_continue;
+	long int		start_time;
 	pthread_mutex_t	print;
 	pthread_mutex_t	m_control;
 	pthread_mutex_t	death;
 	pthread_mutex_t	eat_control;
 }	t_input;
+
 
 #endif

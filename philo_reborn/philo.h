@@ -6,7 +6,7 @@
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 10:42:18 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 10:54:39 by lamorim          ###   ########.fr       */
+/*   Updated: 2023/04/30 11:43:49 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ typedef struct s_philo
 	pthread_t		main_thread;
 	pthread_t		death_thread;
 }	t_philo;
+
 
 #endif
