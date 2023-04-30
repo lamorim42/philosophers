@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   table.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 19:57:35 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 00:53:35 by lamorim          ###   ########.fr       */
+/*   Created: 2023/04/30 10:58:11 by lamorim           #+#    #+#             */
+/*   Updated: 2023/04/30 10:58:27 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef TABLE_H
+# define TABLE_H
 
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/time.h>
 # include <pthread.h>
+# include "philo.h"
 
-typedef struct s_philo
+typedef struct s_table
 {
-	unsigned int	id;
-	pthread_mutex_t	fork;
-	struct s_philo	*next;
-	struct s_philo	*prev;
-	int				n_eat;
-	unsigned int	last_eat;
-	pthread_t		thread;
-	char			is_check;
-	unsigned int	start;
-}	t_philo;
-
-t_philo	**philo_instance(void);
-void	philo_load(void);
-void	*philo_loop(void *ptr);
+	t_input	input;
+	t_philo	*philo;
+}	t_table;
 
 #endif

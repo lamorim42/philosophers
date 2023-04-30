@@ -6,7 +6,7 @@
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 23:31:51 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 00:24:15 by lamorim          ###   ########.fr       */
+/*   Updated: 2023/04/30 01:20:31 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,12 @@ void	ft_putnbr_fd(unsigned int n, int fd)
 
 void	print_action(t_philo *philo, char *str)
 {
-	ft_putnbr_fd(get_time(input_instance()->start), 1);
+	pthread_mutex_lock(&input_instance()->print);
+	ft_putnbr_fd(get_time(philo->start), 1);
 	ft_putstr_fd(" ", 1);
 	ft_putnbr_fd((philo->id + 1), 1);
 	ft_putstr_fd(" ", 1);
 	ft_putstr_fd(str, 1);
 	ft_putstr_fd("\n", 1);
+	pthread_mutex_unlock(&input_instance()->print);
 }

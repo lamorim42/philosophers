@@ -6,22 +6,17 @@
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:02:47 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 00:06:24 by lamorim          ###   ########.fr       */
+/*   Updated: 2023/04/30 10:46:21 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INPUT_H
 # define INPUT_H
 
+#include <pthread.h>
+
 typedef struct s_input
 {
-	unsigned int	n_philo;
-	unsigned int	t_die;
-	unsigned int	t_eat;
-	unsigned int	t_sleep;
-	int				n_eat;
-	unsigned int	start;
-	char			to_continue;
 }	t_input;
 
 t_input	*input_instance(void);

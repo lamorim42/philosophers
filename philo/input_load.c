@@ -6,7 +6,7 @@
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 19:27:46 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 00:07:07 by lamorim          ###   ########.fr       */
+/*   Updated: 2023/04/30 01:16:10 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ void	input_load(int argc, char **argv)
 
 	i = 1;
 	input_instance()->n_eat = -1;
-	input_instance()->start = 0;
 	input_instance()->to_continue = 1;
+	pthread_mutex_init(&input_instance()->print, NULL);
+	pthread_mutex_init(&input_instance()->m_continue, NULL);
 	while (i < argc)
 	{
 		set_input(argv[i], i);

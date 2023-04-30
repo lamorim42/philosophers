@@ -6,7 +6,7 @@
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:23:53 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 00:19:20 by lamorim          ###   ########.fr       */
+/*   Updated: 2023/04/30 01:20:13 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ static void	loop(void)
 	count_eat = 0;
 	philo = *philo_instance();
 	set_last_eat();
-	input_instance()->start = get_time(0);
 	while (input_instance()->to_continue)
 	{
 		if (get_time(philo->last_eat) > input_instance()->t_die)
 		{
+			pthread_mutex_lock(&input_instance()->m_continue);
 			input_instance()->to_continue = 0;
+			pthread_mutex_unlock(&input_instance()->m_continue);
 			print_action(philo, "died");
 		}
 		if (philo->n_eat == input_instance()->n_eat
@@ -104,7 +105,6 @@ int	main(int argc, char **argv)
 	if (input_instance()->n_philo > 0)
 	{
 		philo_load();
-		ft_sleep(500);
 		loop();
 		ft_sleep(500);
 		philo_join();

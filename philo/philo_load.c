@@ -6,12 +6,13 @@
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 20:05:42 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/29 20:54:29 by lamorim          ###   ########.fr       */
+/*   Updated: 2023/04/30 01:28:05 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "input.h"
+#include "utils.h"
 #include <stdlib.h>
 
 static t_philo	*philo_create(void)
@@ -24,6 +25,7 @@ static t_philo	*philo_create(void)
 	new_philo->is_check = 0;
 	new_philo->last_eat = 0;
 	new_philo->n_eat = 0;
+	// new_philo->start = get_time(0);
 	new_philo->next = new_philo;
 	new_philo->prev = new_philo;
 	return (new_philo);

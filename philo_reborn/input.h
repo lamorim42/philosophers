@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   input.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 19:57:35 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 00:53:35 by lamorim          ###   ########.fr       */
+/*   Created: 2023/04/30 10:42:09 by lamorim           #+#    #+#             */
+/*   Updated: 2023/04/30 10:48:56 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef INPUT_H
+# define INPUT_H
 
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/time.h>
 # include <pthread.h>
 
-typedef struct s_philo
+typedef struct s_input
 {
-	unsigned int	id;
-	pthread_mutex_t	fork;
-	struct s_philo	*next;
-	struct s_philo	*prev;
-	int				n_eat;
-	unsigned int	last_eat;
-	pthread_t		thread;
-	char			is_check;
-	unsigned int	start;
-}	t_philo;
-
-t_philo	**philo_instance(void);
-void	philo_load(void);
-void	*philo_loop(void *ptr);
+	unsigned int	n_philo;
+	unsigned int	t_die;
+	unsigned int	t_eat;
+	unsigned int	t_sleep;
+	int				max_eat;
+	int				count_max_eat;
+	char			to_continue;
+	pthread_mutex_t	print;
+	pthread_mutex_t	m_control;
+	pthread_mutex_t	death;
+	pthread_mutex_t	eat_control;
+}	t_input;
 
 #endif

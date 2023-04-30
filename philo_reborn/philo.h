@@ -5,31 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 19:57:35 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 00:53:35 by lamorim          ###   ########.fr       */
+/*   Created: 2023/04/30 10:42:18 by lamorim           #+#    #+#             */
+/*   Updated: 2023/04/30 10:54:39 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/time.h>
 # include <pthread.h>
+# include "input.h"
 
 typedef struct s_philo
 {
-	unsigned int	id;
+	int				id;
+	unsigned long	time_last_eat;
+	unsigned long	eat_count;
+	int				eat_end;
 	pthread_mutex_t	fork;
-	struct s_philo	*next;
-	struct s_philo	*prev;
-	int				n_eat;
-	unsigned int	last_eat;
-	pthread_t		thread;
-	char			is_check;
-	unsigned int	start;
+	pthread_mutex_t	*next_fork;
+	t_input			*input;
+	pthread_t		main_thread;
+	pthread_t		death_thread;
 }	t_philo;
-
-t_philo	**philo_instance(void);
-void	philo_load(void);
-void	*philo_loop(void *ptr);
 
 #endif
