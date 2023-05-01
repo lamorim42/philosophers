@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sleep.c                                         :+:      :+:    :+:   */
+/*   to_stop.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/30 21:33:13 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 21:33:21 by lamorim          ###   ########.fr       */
+/*   Created: 2023/04/30 20:59:38 by lamorim           #+#    #+#             */
+/*   Updated: 2023/04/30 20:59:40 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_sleep(long int time)
+int	is_to_stop(t_philo *philo)
 {
-	usleep(time * 1000);
+	pthread_mutex_lock(&philo->input->mutex_dead);
+	if (philo->input->to_stop)
+	{
+		pthread_mutex_unlock(&philo->input->mutex_dead);
+		return (TRUE);
+	}
+	pthread_mutex_unlock(&philo->input->mutex_dead);
+	return (FALSE);
+}
+
+void	write_to_stop(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->input->mutex_dead);
+	philo->input->to_stop = TRUE;
+	pthread_mutex_unlock(&philo->input->mutex_dead);
 }

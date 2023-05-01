@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/30 21:34:42 by lamorim           #+#    #+#             */
+/*   Updated: 2023/04/30 21:38:10 by lamorim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-int is_number(char **argv, int i, int j)
+int	is_number(char **argv, int i, int j)
 {
 	while (argv[j])
 	{
@@ -16,10 +28,10 @@ int is_number(char **argv, int i, int j)
 	return (1);
 }
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int i;
-	long sum;
+	int		i;
+	long	sum;
 
 	sum = 0;
 	i = -1;
@@ -28,9 +40,9 @@ int ft_atoi(const char *str)
 	return (sum);
 }
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -38,36 +50,13 @@ int ft_strlen(char *str)
 	return (i);
 }
 
-long int get_time(void)
+long int	get_time(void)
 {
-	long int time;
-	struct timeval current_time;
+	long int		time;
+	struct timeval	current_time;
 
 	time = 0;
 	gettimeofday(&current_time, NULL);
 	time = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
 	return (time);
-}
-
-void	input_helper(void)
-{
-	printf("input Error!\n\tPlease use: ");
-	printf("number_of_philosophers ");
-	printf("time_to_die ");
-	printf("time_to_eat ");
-	printf("time_to_sleep ");
-	printf("[number_of_times_each_philosopher_must_eat]\n");
-}
-
-void print_action(char *str, t_philo *philo)
-{
-	long int time;
-
-	time = -1;
-	time = get_time() - philo->input->start;
-	if (time >= 0 && time <= 2147483647 && !verify_death(philo, 0))
-	{
-		printf("%ld ", time);
-		printf("Philo %d %s", philo->id, str);
-	}
 }

@@ -6,11 +6,12 @@ CFLAGS		=	-Werror -Wall -Wextra -pthread
 
 SRCS		=	main.c
 SRCS		+=	utils.c
-SRCS		+=	threading.c
+SRCS		+=	print_utils.c
+SRCS		+=	make_threads.c
 SRCS		+=	initialize.c
 SRCS		+=	ft_sleep.c
 SRCS		+=	philo_loop.c
-SRCS		+=	verify_death.c
+SRCS		+=	to_stop.c
 
 OBJS		=	$(SRCS:.c=.o)
 

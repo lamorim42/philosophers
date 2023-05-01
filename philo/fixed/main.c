@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/30 21:32:51 by lamorim           #+#    #+#             */
+/*   Updated: 2023/04/30 21:32:53 by lamorim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-static int main_verify_death(t_table *table)
+static int	main_verify_death(t_table *table)
 {
 	pthread_mutex_lock(&table->input.mutex_dead);
 	if (table->input.to_stop)
@@ -12,9 +24,9 @@ static int main_verify_death(t_table *table)
 	return (0);
 }
 
-static void stop(t_table *table)
+static void	stop(t_table *table)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = -1;
 	while (!main_verify_death(table))
@@ -43,11 +55,14 @@ static int	is_valid_input(int argc, char **argv, t_table *table)
 {
 	if ((argc == 5 || argc == 6) && is_number(argv, 0, 1))
 	{
+		input_load(table, argc, argv);
 		if (table->input.n_philo <= 0
 			|| table->input.t_die <= 0
 			|| table->input.t_eat <= 0
 			|| table->input.t_sleep <= 0)
+		{
 			return (0);
+		}
 		return (1);
 	}
 	return (0);
@@ -62,13 +77,9 @@ int	main(int argc, char **argv)
 		input_helper();
 		return (1);
 	}
-	input_load(&table, argc, argv);
 	table.philos = malloc(sizeof(t_philo) * table.input.n_philo);
-	if (!table_load(&table) || !threading(&table))
-	{
-		free(table.philos);
-		return (0);
-	}
+	table_load(&table);
+	make_threads(&table);
 	stop(&table);
 	return (0);
 }

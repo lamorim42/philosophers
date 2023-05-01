@@ -6,7 +6,7 @@
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:53:20 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 19:56:55 by lamorim          ###   ########.fr       */
+/*   Updated: 2023/04/30 21:28:28 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_input
 	unsigned int	t_sleep;
 	unsigned int	max_eat;
 	long int		start;
-	int				count_max_eat;
+	int				count_philo_eat;
 	int				to_stop;
 	pthread_mutex_t	mutex_print;
 	pthread_mutex_t	mutex_dead;
@@ -43,7 +43,7 @@ typedef struct s_philo
 	unsigned int	count_eat;
 	long int		time_last_eat;
 	int				id;
-	int				end;
+	int				is_end;
 	pthread_t		main_thread;
 	pthread_t		death_thread;
 	pthread_mutex_t	*next_fork;
@@ -63,10 +63,11 @@ int			is_number(char **argv, int i, int j);
 int			ft_atoi(const char *str);
 int			ft_strlen(char *str);
 int			table_load(t_table *table);
-int			threading(t_table *table);
+int			make_threads(t_table *table);
 void		print_action(char *str, t_philo *philo);
 void		input_helper(void);
 void		philo_loop(t_philo *philo);
-int			verify_death(t_philo *philo, int i);
+int			is_to_stop(t_philo *philo);
+void		write_to_stop(t_philo *philo);
 
 #endif
