@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   ft_sleep.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 19:53:40 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/29 20:28:41 by lamorim          ###   ########.fr       */
+/*   Created: 2023/04/30 21:33:13 by lamorim           #+#    #+#             */
+/*   Updated: 2023/04/30 21:33:21 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "philo.h"
 
-void	ft_sleep(unsigned int time)
+void	ft_sleep(long int time)
 {
 	usleep(time * 1000);
 }

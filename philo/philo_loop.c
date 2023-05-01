@@ -5,57 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamorim <lamorim@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 20:24:31 by lamorim           #+#    #+#             */
-/*   Updated: 2023/04/30 01:29:50 by lamorim          ###   ########.fr       */
+/*   Created: 2023/04/30 21:34:14 by lamorim           #+#    #+#             */
+/*   Updated: 2023/04/30 21:34:16 by lamorim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "input.h"
-#include "utils.h"
-#include <stdio.h>
 
-static void	think(t_philo *philo, unsigned int time)
+static void	to_sleep(t_philo *philo)
 {
-	pthread_mutex_lock(&input_instance()->m_continue);
-	if (input_instance()->to_continue)
-	{
-		print_action(philo, "thinking");
-	}
-	pthread_mutex_unlock(&input_instance()->m_continue);
-	ft_sleep(time);
+	pthread_mutex_lock(&philo->input->mutex_print);
+	print_action("is sleeping\n", philo);
+	pthread_mutex_unlock(&philo->input->mutex_print);
+	ft_sleep(philo->input->t_sleep);
 }
 
-static void	sleep(t_philo *philo)
+static void	to_think(t_philo *philo)
 {
-	pthread_mutex_lock(&input_instance()->m_continue);
-	if (input_instance()->to_continue)
-	{
-		print_action(philo, "sleeping");
-	}
-	pthread_mutex_unlock(&input_instance()->m_continue);
-	ft_sleep(input_instance()->t_sleep);
+	pthread_mutex_lock(&philo->input->mutex_print);
+	print_action("is thinking\n", philo);
+	pthread_mutex_unlock(&philo->input->mutex_print);
 }
 
-void	*philo_loop(void *ptr)
+void	philo_loop(t_philo *philo)
 {
-	t_philo	*philo;
-
-	philo = (t_philo *) ptr;
-	pthread_mutex_lock(&input_instance()->print);
-	philo->start = get_time(0);
-	pthread_mutex_unlock(&input_instance()->print);
-	if (philo->id % 2 == 1)
-		think(philo, input_instance()->t_eat);
-	while (1)
+	pthread_mutex_lock(&philo->fork);
+	pthread_mutex_lock(&philo->input->mutex_print);
+	print_action("has taken a fork\n", philo);
+	pthread_mutex_unlock(&philo->input->mutex_print);
+	if (!philo->next_fork)
 	{
-		pthread_mutex_lock(&input_instance()->m_continue);
-		if (!input_instance()->to_continue)
-			break ;
-		pthread_mutex_unlock(&input_instance()->m_continue);
-		sleep(philo);
-		think(philo, 0);
+		ft_sleep(philo->input->t_die * 2);
+		return ;
 	}
-	pthread_mutex_unlock(&input_instance()->m_continue);
-	return (NULL);
+	pthread_mutex_lock(philo->next_fork);
+	pthread_mutex_lock(&philo->input->mutex_print);
+	print_action("has taken a fork\n", philo);
+	pthread_mutex_unlock(&philo->input->mutex_print);
+	pthread_mutex_lock(&philo->input->mutex_print);
+	print_action("is eating\n", philo);
+	pthread_mutex_lock(&philo->input->mutex_control_eat);
+	philo->time_last_eat = get_time();
+	pthread_mutex_unlock(&philo->input->mutex_control_eat);
+	pthread_mutex_unlock(&philo->input->mutex_print);
+	ft_sleep(philo->input->t_eat);
+	pthread_mutex_unlock(philo->next_fork);
+	pthread_mutex_unlock(&philo->fork);
+	to_sleep(philo);
+	to_think(philo);
 }
